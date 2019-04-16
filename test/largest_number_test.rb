@@ -55,10 +55,4 @@ class LargestNumberTest < Minitest::Test
 
     assert_equal 8505021, @ln.result(input)
   end
-
-  def test_it_can_find_all_nums_with_a_specific_digit_at_a_specific_index
-    input = [61, 66, 76, 86, 68, 12]
-
-    assert_equal [66, 76, 86], @ln.select_nums_with(input, 6, 1)
-  end
 end
