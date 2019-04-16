@@ -1,22 +1,36 @@
 class LargeNumber
-  def result(arr)
-    swapped = true
+  def result(starting_set, position = 0)
+    return [] if starting_set == []
 
-    while swapped
-      swapped = false
-      (arr.length - 2).times do |index|
-        current  = arr[index].to_s
-        next_num = arr[index + 1].to_s
-        if current[0] < next_num[0]
-          arr[index]   = next_num
-          arr[index+1] = current
-          swapped = true
-        elsif 
-        end
+    final_array = []
+
+    starting_set.each do |number|
+      final_array << number if number.to_s[position] == nil
+    end
+
+    9.downto(0) do |lead_digit|
+      subset  = select_nums_with(starting_set, lead_digit, position)
+      if subset.length == 1
+        final_array << subset[0]
+      else
+        final_array << result(subset, position + 1)
       end
     end
-#    arr.sort_by do |num|
-#      num.to_s[0]
-#    end.reverse.join.to_i
+
+    final_array.flatten.join("").to_i
   end
+
+  def select_nums_with(nums, digit, position)
+    nums.find_all do |num|
+      num.to_s[position] == digit.to_s
+    end
+  end
+
+  def array_with_nil_at(num)
+    a = (0..9).to_a
+    a.insert(num + 1, nil)
+    a.reverse
+  end
+
+
 end
