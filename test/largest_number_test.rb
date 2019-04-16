@@ -61,8 +61,4 @@ class LargestNumberTest < Minitest::Test
 
     assert_equal [66, 76, 86], @ln.select_nums_with(input, 6, 1)
   end
-
-  def test_it_can_create_an_array_with_nil_at_a_given_position
-    assert_equal [9, 8, nil, 7, 6, 5, 4, 3, 2, 1, 0], @ln.array_with_nil_at(7)
-  end
 end

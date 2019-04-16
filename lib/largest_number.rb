@@ -25,12 +25,4 @@ class LargeNumber
       num.to_s[position] == digit.to_s
     end
   end
-
-  def array_with_nil_at(num)
-    a = (0..9).to_a
-    a.insert(num + 1, nil)
-    a.reverse
-  end
-
-
 end
