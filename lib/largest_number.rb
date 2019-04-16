@@ -3,21 +3,22 @@ class LargeNumber
     return [] if starting_set == []
 
     final_array = []
-
-    starting_set.each do |number|
-      final_array << number if number.to_s[position] == nil
-    end
+    final_array << numbers_with_no_remaining_digits(starting_set, position)
 
     9.downto(0) do |lead_digit|
-      subset  = select_nums_with(starting_set, lead_digit, position)
-      if subset.length == 1
-        final_array << subset[0]
-      else
-        final_array << result(subset, position + 1)
-      end
+      subset       = select_nums_with(starting_set, lead_digit, position)
+      final_array << subset[0] if subset.length == 1
+      final_array << result(subset, position + 1)
     end
 
     final_array.flatten.join("").to_i
+  end
+
+  private
+  def numbers_with_no_remaining_digits(starting_set, position)
+    starting_set.find_all do |number|
+      number.to_s[position] == nil
+    end
   end
 
   def select_nums_with(nums, digit, position)
